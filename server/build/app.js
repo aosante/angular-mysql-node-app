@@ -19,11 +19,11 @@ class Server {
         this.app.use(morgan_1.default('dev'));
         this.app.use(cors_1.default());
         this.app.use(express_1.default.json());
-        this.app.use(express_1.default.urlencoded());
+        this.app.use(express_1.default.urlencoded({ extended: true }));
     }
     routes() {
         this.app.use('/api', indexRoutes_1.default);
-        this.app.use('/api/listing', listingRoutes_1.default);
+        this.app.use('/api/listings', listingRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => console.log(`Server listening on port ${this.app.get('port')}`));

@@ -1,4 +1,5 @@
 import {Router} from 'express';
+import {listingController} from '../controllers/listingController';
 
 export class ListingRoutes {
     public router: Router = Router();
@@ -8,7 +9,10 @@ export class ListingRoutes {
     }
 
     config(): void {
-        this.router.get('/', (req, res) => res.send('Listings route'));
+        this.router.get('/', listingController.list);
+        this.router.post('/', listingController.create);
+        this.router.put('/:id', listingController.update);
+        this.router.delete('/:id', listingController.delete);
     }
 }
 

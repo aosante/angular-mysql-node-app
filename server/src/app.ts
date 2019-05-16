@@ -4,7 +4,6 @@ import cors from 'cors';
 
 import indexRoutes from './routes/indexRoutes';
 import listingRoutes from './routes/listingRoutes';
-import bodyParser = require('body-parser');
 
 class Server {
 
@@ -21,12 +20,12 @@ class Server {
         this.app.use(morgan('dev'));
         this.app.use(cors());
         this.app.use(express.json());
-        this.app.use(express.urlencoded());
+        this.app.use(express.urlencoded({extended: true}));
     }
 
     routes(): void {
         this.app.use('/api', indexRoutes);
-        this.app.use('/api/listing', listingRoutes);
+        this.app.use('/api/listings', listingRoutes);
 
     }
 
