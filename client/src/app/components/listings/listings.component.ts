@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { ListingsService } from '../../services/listings.service';
 import { Listing } from 'src/app/models/Listing';
 
@@ -8,7 +8,9 @@ import { Listing } from 'src/app/models/Listing';
   styleUrls: ['./listings.component.scss']
 })
 export class ListingsComponent implements OnInit {
+  @HostBinding('class') classes = 'row';
   listings: Listing[];
+  //create delete method
 
   constructor(private listingsService: ListingsService) {}
 
@@ -19,5 +21,9 @@ export class ListingsComponent implements OnInit {
       },
       err => console.error(err)
     );
+  }
+
+  deleteListing(id: string) {
+    //import service, and delete listing
   }
 }
