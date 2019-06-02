@@ -34,7 +34,11 @@
               [(ngModel)]="listing.image"
             />
           </div>
-          <button (click)="addListing()" type="submit" class="btn btn-success">
+          <button
+            (click)="edit ? updateListing() : addListing()"
+            type="submit"
+            class="btn btn-success"
+          >
             Submit
           </button>
         </form>

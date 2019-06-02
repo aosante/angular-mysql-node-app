@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ListingsService } from '../../services/listings.service';
 import { Listing } from 'src/app/models/Listing';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-listings',
@@ -10,11 +11,14 @@ import { Listing } from 'src/app/models/Listing';
 export class ListingsComponent implements OnInit {
   @HostBinding('class') classes = 'row';
   listings: Listing[];
-  //create delete method
 
   constructor(private listingsService: ListingsService) {}
 
   ngOnInit() {
+    this.getListings();
+  }
+
+  getListings() {
     this.listingsService.getListings().subscribe(
       listings => {
         this.listings = listings;
@@ -24,6 +28,26 @@ export class ListingsComponent implements OnInit {
   }
 
   deleteListing(id: string) {
-    //import service, and delete listing
+    //add sweetalert confirmation to proceed, and sweetalert confirm delition
+    swal({
+      title: 'Are you sure?',
+      text: 'The listing will be permanently deleted',
+      icon: 'warning',
+      buttons: {
+        cancel: true,
+        confirm: true
+      },
+      dangerMode: true
+    }).then(willDelete => {
+      if (willDelete) {
+        this.listingsService.deleteListing(id).subscribe(
+          res => {
+            //render a success alert
+            this.getListings();
+          },
+          err => console.error(err)
+        );
+      }
+    });
   }
 }

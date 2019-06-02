@@ -23,7 +23,7 @@ export class ListingsService {
     return this.http.post<Listing>(`${this.listingUrl}/listing`, listing);
   }
 
-  updateListing(id: string, updatedListing: Listing): Observable<Listing> {
+  updateListing(id: number, updatedListing: Listing): Observable<Listing> {
     return this.http.put<Listing>(
       `${this.listingUrl}/listing/${id}`,
       updatedListing

@@ -1,15 +1,21 @@
-<div id="caca" class="col-md-4 mb-3" *ngFor="let listing of listings">
+<div class="col-md-4 mb-3" *ngFor="let listing of listings">
   <div class="card text-center">
     <div class="card-header d-flex justify-content-between align-items-center">
       {{ listing.title }}
       <button class="btn btn-danger" (click)="deleteListing(listing.id)">
-        <i class="fa fa-trash"></i>
+        <i (click)="deleteListing(listing.id)" class="fa fa-trash"></i>
       </button>
     </div>
-    <img [src]="listing.image" width="150" mb-3 />
+    <div class="text-center mt-2">
+      <img [src]="listing.image" width="150" mb-3 />
+    </div>
     <div class="card-body">
       <p>{{ listing.description }}</p>
-      <a href="" class="btn btn-info btn-block">EDIT</a>
+      <a
+        [routerLink]="['/editListing', listing.id]"
+        class="btn btn-info btn-block"
+        >EDIT</a
+      >
     </div>
   </div>
 </div>

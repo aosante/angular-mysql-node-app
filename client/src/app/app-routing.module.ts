@@ -6,7 +6,8 @@ import { ListingFormComponent } from './components/listing-form/listing-form.com
 const routes: Routes = [
   { path: '', redirectTo: 'listings', pathMatch: 'full' },
   { path: 'listings', component: ListingsComponent },
-  { path: 'addListing', component: ListingFormComponent }
+  { path: 'addListing', component: ListingFormComponent },
+  { path: 'editListing/:id', component: ListingFormComponent }
 ];
 
 @NgModule({
